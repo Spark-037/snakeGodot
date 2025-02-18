@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://63og52ont5lu"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_6lo75"]
+[ext_resource type="Script" path="res://Scripts/MarkerManager.gd" id="2_6ie2e"]
+[ext_resource type="Texture2D" uid="uid://h2p1yrmjjkto" path="res://art/pngimg.com - tom_cruise_PNG29.png" id="2_lvprs"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5p24u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lvprs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1pjal"]
+radius = 128.098
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_6lo75")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="." groups=["player"]]
+script = ExtResource("2_6ie2e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+sprite_frames = SubResource("SpriteFrames_5p24u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_1pjal")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1pjal")
+
+[connection signal="eat" from="." to="." method="_on_eat"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

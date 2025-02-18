@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8n753smmk2wr"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_cd442"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_h1to2"]
+b = Vector2(0, 1200)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_85tqs"]
+b = Vector2(1984, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_obu4g"]
+a = Vector2(1984, 1200)
+b = Vector2(0, 1200)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_vbfv4"]
+a = Vector2(1984, 1240)
+b = Vector2(1984, -72)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_cd442")
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(990, 600)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("SegmentShape2D_h1to2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("SegmentShape2D_85tqs")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("SegmentShape2D_obu4g")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("SegmentShape2D_vbfv4")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

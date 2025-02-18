@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ewk5u6rf3q7i"]
+
+[ext_resource type="Texture2D" uid="uid://b67hsey0iwrh4" path="res://art/icon.svg" id="1_deyw2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydt68"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1fwcb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_deyw2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="snake_segment" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ydt68")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1fwcb")
